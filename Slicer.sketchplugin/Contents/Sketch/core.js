@@ -32,6 +32,8 @@ SL.Slicer = {
 	_export: function(context, config) {
 		var selection = context.selection,
 			doc = context.document,
+			page = [doc currentPage],
+			pageName = [page name],
 			platforms = { "android": "Android", "ios": "iOS" }, // Fake keys
 			isSuccess = true,
 			previousShouldFixArtboardBackground,
@@ -54,7 +56,7 @@ SL.Slicer = {
 			for (var platform in platforms) {
 				if (!config[platform].length) { continue; }
 
-				config.nestedFolder = (config.android.length && config.ios.length) ? platforms[platform] + "/" : "";
+				config.nestedFolder = (config.android.length && config.ios.length) ? platforms[platform] + "/"+pageName+"/" : "";
 
 				// Possible 9 patch layer
 				if (platform == "android" && selection[s].name().indexOf(".9") == selection[s].name().length() - 2 && selection[s].name().length >= 3) {
@@ -93,9 +95,9 @@ SL.Slicer = {
 			sizeData,
 			exportOption,
 			fileName;
-			
+
 		var rect = selection.absoluteRect().rect();
-			
+
 		for (var i in config[platform]) {
 			sizeData = config[platform][i];
 			sizeData = _SIZES[platform][sizeData];
@@ -104,7 +106,7 @@ SL.Slicer = {
 			exportOption = selection.exportOptions().addExportFormat();
 			exportOption.setName("");
 			exportOption.setScale(sizeData.size);
-			
+
 			slices = MSExportRequest.exportRequestsFromExportableLayer(selection);
 			slices[0].rect = rect;
 
@@ -185,10 +187,10 @@ SL.ExportConfig = {
 	get: function(context, isRequestNewConfig) {
 		var config = SL.ExportConfig.getSaved(SL.Slicer.documentMetadata);
 
-		if (!config || isRequestNewConfig) {	
+		if (!config || isRequestNewConfig) {
 			config = SL.ExportConfig.getNew(context, config);
 		}
-		
+
 		return config ? SL.ExportConfig._parse(config) : null;
 	},
 
@@ -236,13 +238,11 @@ SL.ExportConfig = {
 					iosSizes = [ 0, 1, 2 ];
 					break;
 				case 1:
-					iosSizes = [ 0, 1 ];
-					break;
-				case 2:
 					androidSizes = [ 0, 1, 2, 3, 4 ];
 					break;
-				case 3:
-					androidSizes = [ 1, 3 ];
+				case 2:
+					iosSizes = [ 0, 1, 2 ];
+					androidSizes = [ 0, 1, 2, 3, 4 ];
 					break;
 			}
 		}
@@ -433,7 +433,7 @@ SL.NinePatch = {
 
 			SL.NinePatch._create(target, inferData.iSlice, inferData.iPatch, tempPage, context, _SIZES.android[size].size, fileName, config.directory);
 		}
-		
+
 		context.document.removePage(tempPage);
 		context.document.setCurrentPage(currentPage);
 
@@ -443,7 +443,7 @@ SL.NinePatch = {
 	_infer: function(layers) {
 		var BLACK = MSColor.blackColor();
 		var i = 0,
-		    patch,    
+		    patch,
 		    slice,
 		    iPatch = 0,
 		    iSlice = 0,
@@ -460,15 +460,15 @@ SL.NinePatch = {
 		while ((!patch && !slice) && i < 2) {
 		    currentLayer = layers.objectAtIndex(i);
 		    blackCount = 0;
-		    
+
 		    // 9patch
 		    if (currentLayer.class() == "MSLayerGroup") {
 		        subLayers = currentLayer.layers()
-		        for (var s = 0; s < subLayers.count(); s++) {   
+		        for (var s = 0; s < subLayers.count(); s++) {
 		        	if (subLayers.objectAtIndex(s).class() == MSSliceLayer) { continue; }
 		            blackCount += (subLayers.objectAtIndex(s).style().fills().objectAtIndex(0).color().isEqual(BLACK)) ? 1 : 0;
 		        }
-		        
+
 		        if (blackCount == 4) {
 		            patch = currentLayer;
 		            slice = layers.objectAtIndex(iSlice);
@@ -477,7 +477,7 @@ SL.NinePatch = {
 		            didFind = true;
 		        }
 		    }
-		    
+
 		    i++;
 		}
 
@@ -502,7 +502,7 @@ SL.NinePatch = {
 		// Slice size
 		frame = layers[data.iSlice].frame();
 		isValid = (frame.width() % 2 == 0 && frame.height() % 2 == 0);
-		
+
 		if (!isValid) {
 			SL.UI.showError(context, {
 				title: "😱 Can't export \"" + sliceName + "\" at 1.5x",
@@ -600,7 +600,7 @@ SL.NinePatch = {
 		var ditto = target.duplicate(),
 			dittoSliceOriginalX,
 			dittoSliceOriginalY;
-		
+
 		ditto.parentGroup().removeLayer(ditto);
 		tempPage.addLayers([ditto]);
 

@@ -1,5 +1,5 @@
 {
-  "author" : "Oz Pinhas",
+  "author" : "iGenius Srl",
   "commands" : [
     {
       "script" : "commands.js",
@@ -29,9 +29,9 @@
       }
     ]
   },
-  "identifier" : "co.ozzik.slicer",
-  "version" : "0.4.3",
-  "description" : "Exporting life",
-  "authorEmail" : "hey@ozzik.co",
+  "identifier" : "net.igenius.slicer",
+  "version" : "0.0.1",
+  "description" : "Exporting sketch to mobile",
+  "authorEmail" : "mobile@igenius.net",
   "name" : "Slicer"
 }
