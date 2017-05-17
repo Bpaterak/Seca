@@ -33,7 +33,7 @@ SL.Slicer = {
 		var selection = context.selection,
 			doc = context.document,
 			page = [doc currentPage],
-			pageName = [page name],
+			pageName = [page name].replace(/[^\x00-\x7F]/g, ""),
 			platforms = { "android": "Android", "ios": "iOS" }, // Fake keys
 			isSuccess = true,
 			previousShouldFixArtboardBackground,

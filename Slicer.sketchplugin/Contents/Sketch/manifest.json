@@ -30,7 +30,7 @@
     ]
   },
   "identifier" : "net.igenius.slicer",
-  "version" : "0.0.1",
+  "version" : "0.0.2",
   "description" : "Exporting sketch to mobile",
   "authorEmail" : "mobile@igenius.net",
   "name" : "Slicer"
