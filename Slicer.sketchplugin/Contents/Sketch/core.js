@@ -3,6 +3,21 @@
 
 var SL = {}; // Namespace
 
+var strip = function (text) {
+	return text.replace(/[^\x00-\x7F]/g, "");
+}
+
+var fileFormat = function(text){
+	var t =  strip(text).replace(/[^a-zA-Z0-9]/g,'_').replace(/__+/g,'_').toLowerCase();
+	if (is_numeric(t.charAt(0)))
+		return "n" + t;
+	return t;
+}
+
+var is_numeric = function (mixed_var) {
+  return (typeof(mixed_var) === 'number' || typeof(mixed_var) === 'string') && mixed_var !== '' && !isNaN(mixed_var);
+}
+
 /* === Core Slicer === */
 SL.Slicer = {
 	documentMetadata: null,
@@ -33,7 +48,7 @@ SL.Slicer = {
 		var selection = context.selection,
 			doc = context.document,
 			page = [doc currentPage],
-			pageName = [page name].replace(/[^\x00-\x7F]/g, ""),
+			pageName = strip([page name]),
 			platforms = { "android": "Android", "ios": "iOS" }, // Fake keys
 			isSuccess = true,
 			previousShouldFixArtboardBackground,
@@ -120,9 +135,9 @@ SL.Slicer = {
 		var fileName;
 
 		if (platform != "android") {
-			fileName = (config.nestedFolder || "") + selection.name() + sizeData.name + ".png";
+			fileName = (config.nestedFolder || "") + fileFormat(selection.name()) + sizeData.name + ".png";
 		} else {
-			fileName = (config.nestedFolder || "") + "drawable-" + sizeData.name + "/" + selection.name() + ".png";
+			fileName = (config.nestedFolder || "") + "drawable-" + sizeData.name + "/" + fileFormat(selection.name())  + ".png";
 		}
 
 		context.document.saveArtboardOrSlice_toFile(slice, (config.directory + fileName));
@@ -256,6 +271,8 @@ SL.ExportConfig = {
 			isIgnoreSliceBackground: config.isIgnoreSliceBackground
 		};
 	},
+
+
 
 	_requestPreset: function(context) {
 		var alertData = SL.UI.requestConfig(context),
