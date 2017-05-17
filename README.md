@@ -18,8 +18,7 @@ Read more at https://ozzik.github.io/Slicer.
 
   Export(Android & iOS) of an icon named `09£%-_--Icons/Symbols/Dark/Right` from page `⌘ Icons`
   
-  ```
-  
+```
  |- Android
     |- Icons
         |- drawable-*
@@ -27,9 +26,8 @@ Read more at https://ozzik.github.io/Slicer.
      
  |- iOS
     |- Icons
-       |- n09_icons_symbols_dark_right.png
-    
-  ```
+       |- n09_icons_symbols_dark_right.png 
+```
   The top level has been decided to be left in case you need to distinguish between assets in different pages
   
 * 0.0.2
