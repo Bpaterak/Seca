@@ -13,17 +13,29 @@ Read more at https://ozzik.github.io/Slicer.
 2. Open ```Slicer.sketchplugin``` (Sketch will magically install the plugin)
 
 ## Wha's new
-* 0.4.3 (Jan 15)
-  * Fixes unwillingness of short-name layers to get exported to Android (thanks Ronit Klein!)
-* 0.4.2 (Dec 8)
-  * Fixes trimming of transparent pixels when exporting layers (by superhero @girafic)
-* 0.4.1 (Nov 8)
-  * Fixes Sketch 41 bugs (slices not being exported at all)
-* 0.4.0 (Oct 9)
-  * Now exporting layers using exportables for all you wild exporters (for visually ignoring everything below those layers. Slices are still being exported using, well, slices)
-  * Adds "xxxhdpi" (4x) export size for Android
-* 0.3.1 (Sep 26)
-  * Hello world (that's a funny version number but yep)
+* 0.0.3
+  file names formatted for Android framework don't create unnecessary folders when exporting files
+
+  Export(Android & iOS) of an icon named `09£%-_--Icons/Symbols/Dark/Right` from page `⌘ Icons`
+  
+  ```
+  
+ |- Android
+    |- Icons
+        |- drawable-*
+            |- n09_icons_symbols_dark_right.png
+     
+ |- iOS
+    |- Icons
+       |- n09_icons_symbols_dark_right.png
+    
+  ```
+  The top level has been decided to be left in case you need to distinguish between assets in different pages
+  
+* 0.0.2
+  page name strip of not unicode characters
+* 0.0.1
+  create a wrapper folder based on the page name, remove error prone exporting options ( not complete ios and Android export )
 
 ## Notes
-* Tested on Sketch 41
+* Tested on Sketch 43.1
