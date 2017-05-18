@@ -5,7 +5,7 @@
       "script" : "commands.js",
       "handler" : "exportToFolder",
       "name" : "Export to Folder",
-      "shortcut" : "cmd e",
+      "shortcut" : "ctrl alt s",
       "identifier" : "exportToFolder"
     },
     {
