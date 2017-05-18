@@ -1,0 +1,30 @@
+{
+  "author" : "iGenius Srl",
+  "commands" : [
+    {
+      "script" : "commands.js",
+      "handler" : "exportToFolderAs",
+      "name" : "Export to Folder",
+      "shortcut" : "ctrl alt s",
+      "identifier" : "exportToFolderAs"
+    }
+  ],
+  "menu": {
+    "isRoot": true,
+    "items": [
+      {
+        "title": "Slic3r",
+        "items": [
+          "exportToFolder",
+          "exportToFolderAs",
+          "do9patch"
+        ]
+      }
+    ]
+  },
+  "identifier" : "net.igenius.slic3r",
+  "version" : "1.0.0",
+  "description" : "Exporting sketch to platforms",
+  "authorEmail" : "info@igenius.net",
+  "name" : "Slic3r"
+}

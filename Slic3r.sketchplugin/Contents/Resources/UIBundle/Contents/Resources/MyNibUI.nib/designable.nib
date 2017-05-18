@@ -17,9 +17,11 @@
                 <outlet property="checkIos1" destination="vG4-FA-Ogf" id="tJX-BQ-ZQw"/>
                 <outlet property="checkIos2" destination="iHh-nn-Sd6" id="idL-gK-FmK"/>
                 <outlet property="checkOpenFolderPostExport" destination="YCI-ZN-KZk" id="yOF-NC-G7R"/>
+                <outlet property="checkWeb0" destination="Bwp-Ag-J7h" id="K1Z-7W-iVA"/>
                 <outlet property="radioPreset0" destination="QqD-Ky-ZZA" id="2Zu-3F-3mr"/>
                 <outlet property="radioPreset1" destination="XbN-sQ-UCV" id="7Wp-ab-9EM"/>
                 <outlet property="radioPreset2" destination="FyR-42-ZnK" id="SiZ-7W-iVA"/>
+                <outlet property="radioPreset3" destination="rDW-fm-UfB" id="S3Z-7W-iVA"/>
                 <outlet property="tabView" destination="ZFR-Jm-243" id="QZB-kQ-yIg"/>
             </connections>
         </customObject>
@@ -43,12 +45,12 @@
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Presets" identifier="1" id="F8M-vO-t93">
-                            <view key="view" id="tEb-Q3-Pm3">
-                                <rect key="frame" x="10" y="33" width="332" height="226"/>
+                            <view key="view" ambiguous="YES" id="tEb-Q3-Pm3">
+                                <rect key="frame" x="10" y="33" width="127" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QqD-Ky-ZZA">
-                                        <rect key="frame" x="16" y="194" width="47" height="18"/>
+                                        <rect key="frame" x="16" y="-32" width="47" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="radio" title=" iOS" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="vVb-RC-NXr">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -59,7 +61,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPz-aY-bIi">
-                                        <rect key="frame" x="38" y="175" width="119" height="17"/>
+                                        <rect key="frame" x="38" y="-51" width="119" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="@1x, @2x and @3x" id="8cW-LD-RIa">
                                             <font key="font" metaFont="cellTitle"/>
@@ -68,7 +70,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XbN-sQ-UCV">
-                                        <rect key="frame" x="16" y="144" width="70" height="18"/>
+                                        <rect key="frame" x="16" y="-82" width="70" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="radio" title="Android" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="iH2-8F-M1J">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -79,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-pR-cZL">
-                                        <rect key="frame" x="38" y="125" width="274" height="17"/>
+                                        <rect key="frame" x="38" y="-101" width="274" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="mdpi, hdpi, xhdpi, xxhdpi and xxxhdpi (1x to 4x)" id="eRj-46-nI8">
                                             <font key="font" metaFont="cellTitle"/>
@@ -88,7 +90,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyR-42-ZnK">
-                                        <rect key="frame" x="16" y="94" width="111" height="18"/>
+                                        <rect key="frame" x="16" y="-132" width="111" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="radio" title=" Android &amp; iOS" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="HNF-Yt-Dw6">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -99,9 +101,29 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTu-6r-s23">
-                                        <rect key="frame" x="38" y="75" width="305" height="17"/>
+                                        <rect key="frame" x="38" y="-151" width="305" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="full export" id="tDB-7Z-V8r">
+                                            <font key="font" metaFont="cellTitle"/>
+                                            <color key="textColor" red="0.41774378270000001" green="0.41774378270000001" blue="0.41774378270000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rDW-fm-UfB">
+                                        <rect key="frame" x="16" y="-183" width="50" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="radio" title="Web" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="dHo-yr-IvC">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="radioButtonSelected:" target="-2" id="Dlg-XF-6Pk"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Th-3r-EBI">
+                                        <rect key="frame" x="38" y="-202" width="305" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="export for web" id="8W0-xa-l6A">
                                             <font key="font" metaFont="cellTitle"/>
                                             <color key="textColor" red="0.41774378270000001" green="0.41774378270000001" blue="0.41774378270000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -111,7 +133,7 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="It's complicated" identifier="2" id="o5f-al-LZl">
-                            <view key="view" ambiguous="YES" id="dhV-Vi-rem">
+                            <view key="view" id="dhV-Vi-rem">
                                 <rect key="frame" x="10" y="33" width="332" height="226"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -125,7 +147,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T6c-Ft-9Nn">
-                                        <rect key="frame" x="14" y="108" width="53" height="18"/>
+                                        <rect key="frame" x="15" y="108" width="53" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="check" title="mdpi" bezelStyle="regularSquare" imagePosition="left" inset="2" id="o4U-gi-mpb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -189,8 +211,25 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6v-Cq-bbu">
+                                        <rect key="frame" x="14" y="49" width="32" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Web" id="Lvf-vV-gEY">
+                                            <font key="font" metaFont="systemMedium" size="13"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bwp-Ag-J7h">
+                                        <rect key="frame" x="14" y="25" width="37" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="2x" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DGn-R1-FKo">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hR2-cp-cWX">
-                                        <rect key="frame" x="14" y="84" width="69" height="18"/>
+                                        <rect key="frame" x="14" y="82" width="69" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="check" title="xxxhdpi" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Znb-Xv-cnK">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

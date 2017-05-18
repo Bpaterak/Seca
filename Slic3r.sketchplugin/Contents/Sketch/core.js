@@ -49,7 +49,7 @@ SL.Slicer = {
 			doc = context.document,
 			page = [doc currentPage],
 			pageName = strip([page name]),
-			platforms = { "android": "Android", "ios": "iOS" }, // Fake keys
+			platforms = { "android": "Android", "ios": "iOS", "web":"Web"}, // Fake keys
 			isSuccess = true,
 			previousShouldFixArtboardBackground,
 			previousShouldFixSliceBackground,
@@ -71,7 +71,7 @@ SL.Slicer = {
 			for (var platform in platforms) {
 				if (!config[platform].length) { continue; }
 
-				config.nestedFolder = (config.android.length && config.ios.length) ? platforms[platform] + "/"+pageName+"/" : "";
+				config.nestedFolder = (config.android.length && config.ios.length) ? platforms[platform] + "/"+pageName+"/" : "" ;
 
 				// Possible 9 patch layer
 				if (platform == "android" && selection[s].name().indexOf(".9") == selection[s].name().length() - 2 && selection[s].name().length >= 3) {
@@ -134,8 +134,10 @@ SL.Slicer = {
 	_saveSliceToFile: function(slice, selection, platform, sizeData, config, context) {
 		var fileName;
 
-		if (platform != "android") {
+		if (platform == "ios") {
 			fileName = (config.nestedFolder || "") + fileFormat(selection.name()) + sizeData.name + ".png";
+		} else if(platform == "web"){
+			fileName = (config.nestedFolder || "") + selection.name() + sizeData.name + ".png";
 		} else {
 			fileName = (config.nestedFolder || "") + "drawable-" + sizeData.name + "/" + fileFormat(selection.name())  + ".png";
 		}
@@ -242,11 +244,13 @@ SL.ExportConfig = {
 
 	_parse: function(config) {
 		var androidSizes = [],
-			iosSizes = [];
+			iosSizes = [],
+			webSizes = [];
 
-		if (config.android || config.ios) {
+		if (config.android || config.ios || config.web) {
 			androidSizes = config.android;
 			iosSizes = config.ios;
+			webSizes = config.web;
 		} else {
 			switch (config.preset) {
 				case 0:
@@ -259,6 +263,9 @@ SL.ExportConfig = {
 					iosSizes = [ 0, 1, 2 ];
 					androidSizes = [ 0, 1, 2, 3, 4 ];
 					break;
+				case 3:
+					webSizes = [ 0 ];
+					break;
 			}
 		}
 
@@ -266,6 +273,7 @@ SL.ExportConfig = {
 			directory: config.directory,
 			android: androidSizes,
 			ios: iosSizes,
+			web: webSizes,
 			isOpenFolderPostExport: config.isOpenFolderPostExport,
 			isIgnoreArtboardBackground: config.isIgnoreArtboardBackground,
 			isIgnoreSliceBackground: config.isIgnoreSliceBackground
@@ -294,12 +302,16 @@ SL.ExportConfig = {
 		} else {
 			config.android = [];
 			config.ios = [];
+			config.web = [];
 
 			for (var i in _SIZES.android) {
 				nibui["checkAndroid" + i].state() && config.android.push(parseInt(i, 10));
 			}
 			for (var i in _SIZES.ios) {
 				nibui["checkIos" + i].state() && config.ios.push(parseInt(i, 10));
+			}
+			for (var i in _SIZES.web) {
+				nibui["checkWeb" + i].state() && config.web.push(parseInt(i, 10));
 			}
 		}
 
@@ -344,6 +356,7 @@ SL.UI = {
 				"radioPreset0", "radioPreset1", "radioPreset2", "radioPreset3",
 				"checkIos0", "checkIos1", "checkIos2",
 				"checkAndroid0", "checkAndroid1", "checkAndroid2", "checkAndroid3", "checkAndroid4",
+				"checkWeb0",
 				"checkOpenFolderPostExport"
 			]
 		);

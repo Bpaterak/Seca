@@ -34,5 +34,11 @@ var _SIZES = {
 			size: 3,
 			name: "@3x"
 		},
+	],
+	web: [
+		{
+			size: 2,
+			name: ""
+		}
 	]
 };
