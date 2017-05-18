@@ -9,7 +9,7 @@ Your friendly Sketch slicing helper.
 Read more at https://ozzik.github.io/Slicer.
 
 ## How to install
-1. Download and open ```Slic3r-master.zip```
+1. Download and open [Slic3r-master.zip](https://github.com/iGenius-Srl/Slic3r/archive/master.zip)
 2. Open ```Slic3r.sketchplugin``` (Sketch will magically install the plugin)
 
 ## Wha's new
