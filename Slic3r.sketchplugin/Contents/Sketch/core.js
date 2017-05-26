@@ -3,8 +3,10 @@
 
 var SL = {}; // Namespace
 
+var imagesArray = [];
+
 var strip = function (text) {
-	return text.replace(/[^\x00-\x7F]/g, "");
+	return text.replace(/[^\x00-\x7F]/g, "").trim();
 }
 
 var fileFormat = function(text){
@@ -16,6 +18,43 @@ var fileFormat = function(text){
 
 var is_numeric = function (mixed_var) {
   return (typeof(mixed_var) === 'number' || typeof(mixed_var) === 'string') && mixed_var !== '' && !isNaN(mixed_var);
+}
+
+var fileToJSON = function(fileName, scale){
+	var scaleType = scale;
+
+
+	if(scaleType === ""){
+		scaleType = "1x";
+	}
+
+	scaleType = scaleType.replace("@","");
+
+	var fileJson = {
+		idiom : "universal",
+		filename : fileName + scale + ".png",
+		scale : scaleType
+	};
+	return fileJson;
+}
+
+var generateContentFileIOS = function(imagesArray, filePath) {
+	var imageContent = {
+		images : imagesArray,
+		info : {
+			version : 1,
+			author : "xcode"
+		}
+	};
+	var jsonString = JSON.stringify(imageContent, true);
+	writeTextToFile(jsonString,filePath);
+	imagesArray = [];
+}
+
+function writeTextToFile(text, filePath) {
+	var t = [NSString stringWithFormat:@"%@", text],
+		f = [NSString stringWithFormat:@"%@", filePath];
+    return [t writeToFile:f atomically:true encoding:NSUTF8StringEncoding error:nil];
 }
 
 /* === Core Slicer === */
@@ -54,9 +93,9 @@ SL.Slicer = {
 			previousShouldFixArtboardBackground,
 			previousShouldFixSliceBackground,
 			isStop;
-
 		// Each layer
 		for (var s = 0; s < selection.count() && !isStop; s++) {
+			imagesArray = [];
 			// Checking for possible background color annoyances
 			if (selection[s].class() == MSArtboardGroup && selection[s].class && (!selection[s].includeBackgroundColorInExport() || !selection[s].hasBackgroundColor())) {
 				previousShouldFixArtboardBackground = SL.Slicer._tryToFixArtboardBackground(context, selection[s], config, previousShouldFixArtboardBackground);
@@ -80,6 +119,9 @@ SL.Slicer = {
 					SL.Slicer._exportSlice(selection[s], platform, config, context);
 				} else { // Layer/group
 					SL.Slicer._exportLayer(selection[s], platform, config, context);
+				}
+				if (platform == "ios" && imagesArray!=undefined && imagesArray.length > 0){
+					generateContentFileIOS(imagesArray,config.directory + config.nestedFolder + "/"+ fileFormat(selection[s].name())+".imageset"+"/Contents.json")
 				}
 			}
 		}
@@ -135,7 +177,11 @@ SL.Slicer = {
 		var fileName;
 
 		if (platform == "ios") {
-			fileName = (config.nestedFolder || "") + fileFormat(selection.name()) + sizeData.name + ".png";
+			var imageName = fileFormat(selection.name());
+			var imageType = sizeData.name;
+			imagesArray.push(fileToJSON(imageName, imageType))
+			// add images in name.imageset as expected by Xcode
+			fileName = (config.nestedFolder || "") + imageName+".imageset/"+ imageName + imageType+ ".png";
 		} else if(platform == "web"){
 			fileName = (config.nestedFolder || "") + selection.name() + sizeData.name + ".png";
 		} else {
@@ -143,6 +189,8 @@ SL.Slicer = {
 		}
 
 		context.document.saveArtboardOrSlice_toFile(slice, (config.directory + fileName));
+
+
 	},
 
 	_tryToFixArtboardBackground: function(context, artboard, config, previousShouldFix) {
