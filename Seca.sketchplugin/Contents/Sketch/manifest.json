@@ -13,7 +13,7 @@
     "isRoot": true,
     "items": [
       {
-        "title": "Slic3r",
+        "title": "Seca",
         "items": [
           "exportToFolder",
           "exportToFolderAs",
@@ -22,9 +22,9 @@
       }
     ]
   },
-  "identifier" : "net.igenius.slic3r",
+  "identifier" : "net.igenius.seca",
   "version" : "1.0.1",
   "description" : "Exporting sketch to platforms",
   "authorEmail" : "info@igenius.net",
-  "name" : "Slic3r"
+  "name" : "Seca"
 }
