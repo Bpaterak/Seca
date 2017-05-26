@@ -1,24 +1,17 @@
-# Slic3r
-
-![Slicer icon](docs/assets/slicer@2x.png)
+# Seca
 
 Your friendly Sketch slicing helper.
 
-![Demo](docs/assets/demo@2x.gif)
-
-Read more at https://ozzik.github.io/Slicer.
-
 ## How to install
-1. Download and open [Slic3r-master.zip](https://github.com/iGenius-Srl/Slic3r/archive/master.zip)
-2. Open ```Slic3r.sketchplugin``` (Sketch will magically install the plugin)
+1. Download and open [Seca-master.zip](https://github.com/iGenius-Srl/Seca/archive/master.zip)
+2. Open ```Seca.sketchplugin``` (Sketch will magically install the plugin)
 
 ## Wha's new
-* 1.0.0
-  support for web
-* 0.0.3
-  file names formatted for Android framework don't create unnecessary folders when exporting files
+* 1.0.0 updated export for ios
+* 1.0.0 support for web, export always in 2x
+* 0.0.3 file names formatted for Android framework don't create unnecessary folders when exporting files
 
-  Export(Android & iOS) of an icon named `09£%-_--Icons/Symbols/Dark/Right` from page `⌘ Icons`
+  Export(Android & iOS & Web ) of an icon named `09£%-_--Icons/Symbols/Dark/Right` from page `⌘ Icons`
   
 ```
  |- Android
@@ -28,7 +21,16 @@ Read more at https://ozzik.github.io/Slicer.
      
  |- iOS
     |- Icons
-       |- n09_icons_symbols_dark_right.png 
+       |- n09_icons_symbols_dark_right.imageset
+          |- Contents.json
+          |- n09_icons_symbols_dark_right.png 
+          |- n09_icons_symbols_dark_right@2x.png 
+          |- n09_icons_symbols_dark_right@3x.png 
+ |- Web
+     |- 09£%-_--Icons
+        |- Symbols
+          |- Dark
+            |- Right.png
 ```
   The top level has been decided to be left in case you need to distinguish between assets in different pages
   
