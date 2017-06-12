@@ -23,7 +23,7 @@
     ]
   },
   "identifier" : "net.igenius.seca",
-  "version" : "1.0.1",
+  "version" : "1.0.2",
   "description" : "Exporting sketch to platforms",
   "authorEmail" : "info@igenius.net",
   "name" : "Seca"

@@ -44,6 +44,9 @@ var generateContentFileIOS = function(imagesArray, filePath) {
 		info : {
 			version : 1,
 			author : "xcode"
+		},
+		properties : {
+			"template-rendering-intent" : "template"
 		}
 	};
 	var jsonString = JSON.stringify(imageContent, true);
